@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import "bootstrap/dist/css/bootstrap.min.css"
 import "./globals.css";
+import BootstrapClient from "@/components/wrappers/BootstrapClient";
+import Header from "@/components/layout/Header";
+import Provider from "@/components/wrappers/Provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,7 +25,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+        <Header />
+        <Provider>{children}</Provider>
+        <BootstrapClient />
       </body>
     </html>
   );

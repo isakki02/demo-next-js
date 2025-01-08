@@ -3,21 +3,21 @@ import { PostService } from '@/backend/services/post-service';
 import { PostProps } from '@/types/post';
 
 export async function PATCH(req: NextRequest, { params }: { params: { postId: string } }) {
-  const { title, desc, userId } = await req.json()
+  const { title, desc, authorId } = await req.json()
   const { postId } = params;
 
   try {
     if (!postId) {
       return NextResponse.json({ success: false, message: 'Post Id is required' }, { status: 400 });
     }
-    if (!userId) {
+    if (!authorId) {
       return NextResponse.json({ success: false, message: 'Author Id is required' }, { status: 400 });
     }
     if (!title || !desc) {
       return NextResponse.json({ success: false, message: 'Title and Description are required' }, { status: 400 });
     }
 
-    const postDetails: PostProps = { title, desc, authorId: userId }
+    const postDetails: PostProps = { title, desc, authorId }
     const updatedPost = await PostService.updateOne(postId, postDetails);
 
     return NextResponse.json({ success: true, message: 'Post updated successfully', records: updatedPost }, { status: 201 });
