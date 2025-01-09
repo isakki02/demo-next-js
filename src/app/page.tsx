@@ -5,7 +5,6 @@ import Loader from '@/components/layout/Loader'
 import Toast from '@/components/layout/Toast'
 import { useGetAllPosts } from '@/hooks/postQueries'
 import { PostProps } from '@/types/post'
-import { useEffect } from 'react'
 
 const Home = () => {
   const getAllPostQuery = useGetAllPosts()

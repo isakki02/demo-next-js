@@ -47,7 +47,7 @@ const PostForm = ({ header, postDetails }: postFormCompProps) => {
     if (postDetails) {
       await updatePostQuery.mutateAsync(data);
     } else {
-      await createPostQuery.mutateAsync({ ...data, authorId: "014964aa-e3bd-4adf-bff8-371f1669adfc" });
+      await createPostQuery.mutateAsync({ ...data, authorId: "49063eff-8728-4c82-8eb3-a6dd8599de86" });
     }
   };
 
@@ -61,7 +61,7 @@ const PostForm = ({ header, postDetails }: postFormCompProps) => {
         <textarea {...register("desc")} className={`form-control ${errors.desc ? "is-invalid" : ""}`} rows={4} placeholder="Description" />
         {errors.desc && <div className="invalid-feedback">{errors.desc.message}</div>}
 
-        <input type="hidden" {...register("authorId")} value={postDetails?.authorId || "014964aa-e3bd-4adf-bff8-371f1669adfc"} />
+        <input type="hidden" {...register("authorId")} value={postDetails?.authorId || "49063eff-8728-4c82-8eb3-a6dd8599de86"} />
         <button type="submit" className="btn btn-primary">Submit</button>
       </form>
     </div>

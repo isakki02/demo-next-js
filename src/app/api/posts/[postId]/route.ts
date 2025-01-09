@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PostService } from '@/backend/services/post-service';
 import { PostProps } from '@/types/post';
+import { verifyToken } from '@/helpers/verifyToken';
 
 export async function PATCH(req: NextRequest, { params }: { params: { postId: string } }) {
   const { title, desc, authorId } = await req.json()
@@ -13,6 +14,12 @@ export async function PATCH(req: NextRequest, { params }: { params: { postId: st
     if (!authorId) {
       return NextResponse.json({ success: false, message: 'Author Id is required' }, { status: 400 });
     }
+
+    const checkCurrentUser = await verifyToken()
+    if(authorId !== checkCurrentUser.records?.userId) {
+      return NextResponse.json({ success: false, message: 'Unauthorized', records: null }, { status: 400 });
+    }
+
     if (!title || !desc) {
       return NextResponse.json({ success: false, message: 'Title and Description are required' }, { status: 400 });
     }
@@ -38,6 +45,11 @@ export async function DELETE(req: NextRequest, { params }: { params: { postId: s
     if (!postDetails) {
       return NextResponse.json({ success: false, message: 'Post not found', records: null }, { status: 404 });
     } 
+
+    const checkCurrentUser = await verifyToken()
+    if(postDetails?.authorId !== checkCurrentUser.records?.userId) {
+      return NextResponse.json({ success: false, message: 'Unauthorized', records: null }, { status: 400 });
+    }
 
     const deletedPost = await PostService.deleteOne(postId)
     return NextResponse.json({ success: true, message: 'Post deleted successfully' }, { status: 200 });
