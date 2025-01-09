@@ -3,4 +3,5 @@ export interface BlogCardProps {
   image: string;
   title: string;
   desc: string;
+  authorId: string;
 }

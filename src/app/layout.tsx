@@ -25,9 +25,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Header />
-        <Provider>{children}</Provider>
-        <BootstrapClient />
+        <Provider>
+          <Header />
+          {children}
+          <BootstrapClient />
+        </Provider>
       </body>
     </html>
   );

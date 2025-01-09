@@ -1,6 +1,12 @@
+'use client'
+
+import { useUserData } from '@/hooks/userQueries'
 import React from 'react'
 
 const Header = () => {
+  const userData = useUserData()
+  const userId = userData.data?.records?.userId
+
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container">
@@ -13,15 +19,23 @@ const Header = () => {
             <li className="nav-item">
               <a className="nav-link active" aria-current="page" href="/">Home</a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/my-blogs">My Blogs</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/create-blog">Create Blog</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/account">Account</a>
-            </li>
+
+            {userId ?
+              <>
+                <li className="nav-item">
+                  <a className="nav-link" href="/my-blogs">My Blogs</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/create-blog">Create Blog</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/account">Account</a>
+                </li>
+              </> :
+              <li className="nav-item">
+                <a className="nav-link" href="/login">Login</a>
+              </li>
+            }
           </ul>
         </div>
       </div>

@@ -18,9 +18,9 @@ export async function GET() {
 
     // Destructure properties from the decoded payload
     const { userId, exp } = decoded as { userId: string; exp: number };
-    const currentUser = { message: "Token verified successfully!", user: { userId, exp } };
+    const currentUser = { userId, exp };
 
-    return NextResponse.json({ message: "Token verified successfully", records: currentUser }, { status: 400 });
+    return NextResponse.json({ message: "Token verified successfully", records: currentUser }, { status: 200 });
   } catch (error) {
     console.error("JWT Verification Error:", error);
     return NextResponse.json({ message: "Something went wrong" }, { status: 400 });

@@ -2,7 +2,6 @@ import { PostService } from "@/services/post.service"
 import { PostProps } from "@/types/post"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 
-
 export const useCreatePost = () => {
   return useMutation({
     mutationFn: (postDetails: PostProps) => PostService.createPost(postDetails)

@@ -26,5 +26,5 @@ export const PostService = {
   updatePost,
   deletePost,
   getAllPosts,
-  getSinglePost
+  getSinglePost,
 }

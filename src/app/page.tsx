@@ -22,7 +22,7 @@ const Home = () => {
       <div className='row g-3 justify-content-center'>
         {getAllPostQuery?.data?.records?.map((record: PostProps) => (
           <div key={record?.id} className='col-12 col-md-4 col-lg-3'>
-            <BlogPreviewCard image='/blog-images/firstPic.jpg' title={record?.title} desc={record?.desc} postId={record?.id!!} />
+            <BlogPreviewCard image='/blog-images/firstPic.jpg' title={record?.title} desc={record?.desc} postId={record?.id!!} authorId={record.authorId} />
           </div>
         ))}
       </div>
