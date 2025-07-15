@@ -10,8 +10,10 @@ export interface LoginFormCompProps {
 }
 
 export interface RegisterFormCompProps {
-  header?: string;
+  header?: string;   
 }
+
+//testing
 
 export const LoginForm = ({ header }: LoginFormCompProps) => {
   const loginQuery = useLogin();
